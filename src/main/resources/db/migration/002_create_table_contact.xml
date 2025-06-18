@@ -1,0 +1,32 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="002_create_table_contact" author="armine">
+        <createTable tableName="contact">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="VARCHAR(100)"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="phone" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birthday" type="DATE"/>
+            <column name="address" type="VARCHAR(255)"/>
+
+            <column name="relation_type"
+                    type="enum('FAMILY', 'FRIEND', 'COLLEAGUE', 'SCHOOL', 'SERVICE', 'HOBBIES', 'HEALTHCARE', 'OTHER')">
+            </column>
+
+            <column name="user_id" type="INT">
+                <constraints nullable="false" foreignKeyName="fk_contact_user"
+                             referencedTableName="user" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
